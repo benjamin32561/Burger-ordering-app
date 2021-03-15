@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427340456312",
+    "project_id": "willis-app-16431",
+    "storage_bucket": "willis-app-16431.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427340456312:android:91a7ec6268f23007b3688d",
+        "android_client_info": {
+          "package_name": "com.benjamin.willis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427340456312-p9df7l4495lhgq44mmja46vsa25k16be.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdTMMECchDggsI8kg3UJhkU2wkJJlU82g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427340456312-p9df7l4495lhgq44mmja46vsa25k16be.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
