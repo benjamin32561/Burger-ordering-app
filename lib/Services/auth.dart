@@ -4,25 +4,29 @@ class AuthService
 {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //sign in email & password
-
-  //register with email & password
-  Future signupEmailPass(Map<String,String> data) async
+  //signin email password
+  Future signinEmailPassword(String email, String password) async
   {
     try
     {
-      final user = await _auth.createUserWithEmailAndPassword(email: data["email"], password: data["password"]);
-      if (user != null)
-      {
-
-      }
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
     }
     catch(e)
     {
-      print(e);
+      return null;
     }
   }
 
-  //sign up with google
-
+  //singup email password
+  Future signupEmailPassword(Map<String, String> data) async
+  {
+    try
+    {
+      return await _auth.createUserWithEmailAndPassword(email: data["email"], password: data["password"]);
+    }
+    catch(e)
+    {
+      return null;
+    }
+  }
 }

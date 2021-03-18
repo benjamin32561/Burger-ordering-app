@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'Screens/home.dart';
-import 'Screens/LoginAndSignup/login.dart';
-import 'Screens/LoginAndSignup/signup.dart';
+import 'Screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main()
@@ -23,13 +19,3 @@ class App extends StatelessWidget
   }
 }
 
-class Wrapper extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-    //returns widget based on authentication
-    Widget to_ret = LoginScreen();
-    return to_ret;
-  }
-}
