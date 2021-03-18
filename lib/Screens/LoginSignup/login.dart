@@ -27,10 +27,11 @@ class _LoginScreenState extends State<LoginScreen>
         padding: EdgeInsets.only(top: queryData.size.height*0.3),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.only(left: queryData.size.width * 0.1, right: queryData.size.width * 0.1),
+            children: [
               Container(
-                width: queryData.size.width*0.8,
                 padding: EdgeInsets.only(bottom: queryData.size.height*0.03),
                 child: TextFormField(
                   validator: (val){
@@ -41,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
               ),
               Container(
-                width: queryData.size.width*0.8,
                 padding: EdgeInsets.only(bottom: queryData.size.height*0.03),
                 child: TextFormField(
                     obscureText: true,
@@ -50,10 +50,12 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
               ),
               Container(
-                width: queryData.size.width*0.5,
-                padding: EdgeInsets.only(bottom: queryData.size.height*0.01),
+                padding: EdgeInsets.only(bottom: queryData.size.height*0.01,
+                left: queryData.size.height*0.08,
+                right: queryData.size.height*0.08),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      primary: Colors.redAccent,
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
                     ),
@@ -79,10 +81,12 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
               ),
               Container(
-                width: queryData.size.width*0.5,
-                padding: EdgeInsets.only(bottom: queryData.size.height*0.01),
+                padding: EdgeInsets.only(bottom: queryData.size.height*0.01,
+                    left: queryData.size.height*0.08,
+                    right: queryData.size.height*0.08),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    primary: Colors.redAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0),
                     ),

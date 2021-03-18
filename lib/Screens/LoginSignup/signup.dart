@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Services/auth.dart';
 
@@ -33,6 +34,7 @@ class _SignupScreenState extends State<SignupScreen>
         child: Form(
           key: _formKey,
           child: ListView(
+            physics: BouncingScrollPhysics(),
             padding: EdgeInsets.only(left: queryData.size.width * 0.1, right: queryData.size.width * 0.1),
             children: <Widget>[
               Container(
@@ -103,6 +105,7 @@ class _SignupScreenState extends State<SignupScreen>
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    primary: Colors.redAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),

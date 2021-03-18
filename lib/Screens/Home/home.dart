@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:willis/Models/burgerModel.dart';
+import 'package:willis/Screens/Home/burger.dart';
 
 import '../../helpers.dart';
 
@@ -15,9 +17,7 @@ class _HomeScreenState extends State<HomeScreen>
 {
   MediaQueryData queryData;
   int toPay = 0;
-  int i = 0;
-  List<Widget> burgers = null;
-  List<Widget> show = null;
+  List<BurgerData> burgers = [];
 
   @override
   Widget build(BuildContext context)
@@ -53,6 +53,11 @@ class _HomeScreenState extends State<HomeScreen>
                   FloatingActionButton(
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.remove),
+                    onPressed: (){
+                      setState(() {
+                        burgers.removeWhere((data) => data.selected);
+                      });
+                    },
                   ),
                   Container(
                     width: queryData.size.width*0.3,
@@ -70,17 +75,8 @@ class _HomeScreenState extends State<HomeScreen>
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.add),
                     onPressed: () {
-                      if (burgers == null)
-                      {
-                        burgers = [Burger(key: ValueKey(i),)];
-                      }
-                      else
-                      {
-                        burgers.insert(0, Burger(key: ValueKey(i),));
-                      }
                       setState(() {
-                        i++;
-                        show = burgers;
+                        burgers.insert(0, BurgerData());
                       });
                     },
                   ),
@@ -93,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: Container(
         alignment: Alignment.center,
         child: ListView(
-          children: show == null? []:show,
+          children: [],//this.burgers.map<Burger>((data) => Burger(data: data,),).toList(),
         ),
       ),
     );
