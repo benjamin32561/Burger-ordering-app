@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:willis/Services/auth.dart';
 import 'Screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -9,12 +11,16 @@ void main()
 
 class App extends StatelessWidget
 {
+
   @override
   Widget build(BuildContext context)
   {
-    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-    return MaterialApp(
-      home: Wrapper(),
+    Firebase.initializeApp();
+    return StreamProvider.value(
+      value: AuthService().user,
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
     );
   }
 }
