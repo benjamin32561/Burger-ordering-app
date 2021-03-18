@@ -4,8 +4,10 @@ import 'package:willis/Services/auth.dart';
 import 'Screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main()
+void main()async
 {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(App());
 }
 
