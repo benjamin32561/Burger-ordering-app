@@ -4,6 +4,12 @@ class AuthService
 {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  //auth change user stream
+  Stream<User> get user
+  {
+    return _auth.authStateChanges();
+  }
+
   //signin email password
   Future signinEmailPassword(String email, String password) async
   {
