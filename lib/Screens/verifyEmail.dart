@@ -44,7 +44,7 @@ class VerifyEmailScreen extends StatelessWidget
                       ),
                     ),
                   onPressed: (){
-                    AuthService().verifyEmail();
+                    //AuthService().verifyEmail();
                   },
                   child: Text("Resend Email"),
                 ),

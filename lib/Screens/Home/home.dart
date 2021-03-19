@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Models/burgerModel.dart';
 import 'package:willis/Screens/Home/burger.dart';
+import 'package:willis/Screens/loadingWidget.dart';
 import '../../helpers.dart';
 
 class HomeScreen extends StatefulWidget
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
                 FirebaseAuth.instance.signOut();
               },
               child: Text(
-                "Signout",
+                "Logout",
                 style: textStyle(Colors.black54, 20.0),
               ),
             ),
@@ -87,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen>
                   Container(
                     width: queryData.size.width*0.3,
                     child: FloatingActionButton(
+                      onPressed: (){},
                       backgroundColor: Colors.redAccent,
                       child: Text(
                         "Order now",
