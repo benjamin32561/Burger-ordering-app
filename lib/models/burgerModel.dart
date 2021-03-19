@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 
 class BurgerData
 {
   bool selected = false;
-
-  BurgerData();
+  Key key;
+  BurgerData(this.key);
 }

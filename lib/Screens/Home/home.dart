@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Models/burgerModel.dart';
@@ -17,14 +18,36 @@ class _HomeScreenState extends State<HomeScreen>
 {
   MediaQueryData queryData;
   int toPay = 0;
-  List<BurgerData> burgers = [];
+  int id = 0;
+  List<BurgerData> burgers = null;
 
   @override
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
+    List<Widget> show = [];
+    if (burgers != null)
+    {
+      for (int i = 0; i < burgers.length; i++)
+        show.add(Burger(burgers[i]));
+    }
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            TextButton(
+              onPressed: (){
+                FirebaseAuth.instance.signOut();
+              },
+              child: Text(
+                "Signout",
+                style: textStyle(Colors.black54, 20.0),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
         shape: RoundedRectangleBorder(
@@ -32,14 +55,12 @@ class _HomeScreenState extends State<HomeScreen>
             bottom: Radius.circular(17),
           ),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.beach_access,
-            )
-          ],
-        )
+        title: Container(
+          padding: EdgeInsets.only(right: queryData.size.width*0.5, left: queryData.size.width*0.3),
+          child: Icon(
+            Icons.beach_access,
+          ),
+        ),
       ),
       floatingActionButton: Stack(
         children: <Widget>[
@@ -54,9 +75,16 @@ class _HomeScreenState extends State<HomeScreen>
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.remove),
                     onPressed: (){
-                      setState(() {
-                        burgers.removeWhere((data) => data.selected);
-                      });
+                      if (burgers != null)
+                      {
+                        List<BurgerData> temp = [];
+                        for (int i = 0; i < burgers.length; i++)
+                        {
+                          if (!burgers[i].selected) temp.add(burgers[i]);
+                        }
+                        print(temp[0].key.toString());
+                        setState(() => burgers = temp);
+                      }
                     },
                   ),
                   Container(
@@ -75,9 +103,10 @@ class _HomeScreenState extends State<HomeScreen>
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.add),
                     onPressed: () {
-                      setState(() {
-                        burgers.insert(0, BurgerData());
-                      });
+                      BurgerData bd = new BurgerData(ValueKey(id));
+                      if (burgers == null) burgers = [bd];
+                      else burgers.insert(0, bd);
+                      setState(() => id++);
                     },
                   ),
                 ],
@@ -89,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen>
       body: Container(
         alignment: Alignment.center,
         child: ListView(
-          children: [],//this.burgers.map<Burger>((data) => Burger(data: data,),).toList(),
+          children: show,
         ),
       ),
     );

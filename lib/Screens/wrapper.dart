@@ -12,7 +12,7 @@ class Wrapper extends StatelessWidget
     final user = Provider.of<User>(context);
     if (user == null)
     {
-      return LoginScreen();//LoginScreen();
+      return LoginScreen();
     }
     return HomeScreen();
   }

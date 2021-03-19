@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:willis/Screens/LoginSignup/signup.dart';
 import 'package:willis/Services/auth.dart';
+import 'package:willis/loadingWidget.dart';
 import '../../helpers.dart';
 
 class LoginScreen extends StatefulWidget
@@ -15,13 +16,14 @@ class _LoginScreenState extends State<LoginScreen>
   TextEditingController _password_controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   MediaQueryData queryData;
+  bool loading = false;
 
   @override
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return Scaffold(
-      backgroundColor: Colors.white70,
+    return loading ? LoadingAnnimation():Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.only(top: queryData.size.height*0.3),
@@ -64,10 +66,12 @@ class _LoginScreenState extends State<LoginScreen>
                   onPressed: () async {
                     if (_formKey.currentState.validate())
                     {
+                      setState(()=> loading = true);
                       AuthService ac = AuthService();
                       final user = await ac.signinEmailPassword(_email_controller.text, _password_controller.text);
                       if (user == null)
                       {
+                        setState(()=> loading = false);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                               "Invalid email or password",
@@ -95,8 +99,7 @@ class _LoginScreenState extends State<LoginScreen>
                   onPressed: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()),
-                    );
+                      MaterialPageRoute(builder: (context) => SignupScreen()),);
                   },
                 ),
               ),

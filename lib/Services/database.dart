@@ -8,11 +8,11 @@ class DatabaseService
   void addDataToUser(Map<String, String> data)
   {
     AuthService ac = AuthService();
+    var uid = ac.userObject.uid;
     Map<String, dynamic> to_send = {
       "first name": data["first_name"],
       "last name": data["last_name"],
-      "uid": ac.userObject.uid,
     };
-    usersCollection.add(to_send);
+    usersCollection.doc(uid).set(to_send);
   }
 }

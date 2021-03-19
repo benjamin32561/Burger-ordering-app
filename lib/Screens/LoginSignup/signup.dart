@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Services/auth.dart';
+import 'package:willis/Services/database.dart';
+import 'package:willis/loadingWidget.dart';
 
 import '../../helpers.dart';
 
@@ -21,13 +23,14 @@ class _SignupScreenState extends State<SignupScreen>
   };
   final _formKey = GlobalKey<FormState>();
   MediaQueryData queryData;
+  bool loading = false;
 
   @override
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return Scaffold(
-      backgroundColor: Colors.white70,
+    return loading? LoadingAnnimation():Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.only(top: queryData.size.height * 0.13),
@@ -112,7 +115,9 @@ class _SignupScreenState extends State<SignupScreen>
                   ),
                   child: Text("Signup"),
                   onPressed: () async {
-                    if (_formKey.currentState.validate()) {
+                    if (_formKey.currentState.validate())
+                    {
+                      setState(()=> loading = true);
                       Map<String, String> data = {
                         "email": null,
                         "password": null,
@@ -122,8 +127,10 @@ class _SignupScreenState extends State<SignupScreen>
                       };
                       controllers.forEach((key, value) {data[key] = value.text;});
                       AuthService ac = AuthService();
-                      final user = null;//await ac.signupEmailPassword(data);
-                      if (user == null) {
+                      final user = await ac.signupEmailPassword(data);
+                      if (user == null)
+                      {
+                        setState(()=> loading = false);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                               "Error while creating user",
@@ -131,6 +138,15 @@ class _SignupScreenState extends State<SignupScreen>
                             ),
                           ),
                         );
+                      }
+
+                      else
+                      {
+                        setState(()=> loading = true);
+                        DatabaseService ds = DatabaseService();
+                        ds.addDataToUser(data);
+                        ac.signinEmailPassword(data["email"], data["password"]);
+                        Navigator.pop(context);
                       }
                     }
                   },
