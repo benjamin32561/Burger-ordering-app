@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return loading ? LoadingAnnimation():Scaffold(
+    return loading ? LoadingAnimation(""):Scaffold(
       backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,

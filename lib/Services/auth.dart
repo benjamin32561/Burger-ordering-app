@@ -40,4 +40,9 @@ class AuthService
       return null;
     }
   }
+
+  void verifyEmail()
+  {
+    this.userObject.sendEmailVerification();
+  }
 }

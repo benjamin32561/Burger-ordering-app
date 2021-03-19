@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen>
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return loading? LoadingAnnimation():Scaffold(
+    return loading? LoadingAnimation(""):Scaffold(
       backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
@@ -130,7 +130,7 @@ class _SignupScreenState extends State<SignupScreen>
                       final user = await ac.signupEmailPassword(data);
                       if (user == null)
                       {
-                        setState(()=> loading = false);
+                        setState(() => loading = false);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                               "Error while creating user",
@@ -139,10 +139,9 @@ class _SignupScreenState extends State<SignupScreen>
                           ),
                         );
                       }
-
                       else
                       {
-                        setState(()=> loading = true);
+                        setState(() => loading = true);
                         DatabaseService ds = DatabaseService();
                         ds.addDataToUser(data);
                         ac.signinEmailPassword(data["email"], data["password"]);

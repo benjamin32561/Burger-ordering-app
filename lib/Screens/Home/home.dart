@@ -1,11 +1,8 @@
-import 'dart:collection';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Models/burgerModel.dart';
 import 'package:willis/Screens/Home/burger.dart';
-
 import '../../helpers.dart';
 
 class HomeScreen extends StatefulWidget
@@ -119,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen>
         alignment: Alignment.center,
         child: ListView(
           children: show,
+          physics: BouncingScrollPhysics(),
         ),
       ),
     );

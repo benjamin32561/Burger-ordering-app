@@ -7,17 +7,15 @@ class Burger extends StatefulWidget
   Burger(this.data);
 
   @override
-  _BurgerState createState() => _BurgerState(this.data);
+  _BurgerState createState() => _BurgerState(data.key);
 }
 
 class _BurgerState extends State<Burger>
 {
   BurgerData data;
   MediaQueryData queryData;
-  _BurgerState(this.data)
-  {
-    print(data.key.toString());
-  }
+  _BurgerState(Key k) {data = BurgerData(k);}
+
 
   @override
   Widget build(BuildContext context)
