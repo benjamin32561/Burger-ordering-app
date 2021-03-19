@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:willis/Screens/LoginSignup/login.dart';
-import 'package:willis/loadingWidget.dart';
 import 'Home/home.dart';
 
 class Wrapper extends StatelessWidget
@@ -11,11 +10,10 @@ class Wrapper extends StatelessWidget
   Widget build(BuildContext context)
   {
     final user = Provider.of<User>(context);
-    if (user == null )
+    if (user == null)
     {
       return LoginScreen();
     }
-    if (!user.emailVerified) return LoadingAnimation("Please verify your email, a verification email was sent to you");
     return HomeScreen();
   }
 }

@@ -21,6 +21,7 @@ class App extends StatelessWidget
     Firebase.initializeApp();
     return StreamProvider<User>.value(
       value: AuthService().user,
+      initialData: AuthService().userObject,
       child: MaterialApp(
         home: Wrapper(),
       ),

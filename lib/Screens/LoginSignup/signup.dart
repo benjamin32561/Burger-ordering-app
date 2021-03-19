@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Services/auth.dart';
 import 'package:willis/Services/database.dart';
-import 'package:willis/loadingWidget.dart';
+import 'file:///C:/Users/ben32/Desktop/everything/Projects/willis/lib/Screens/loadingWidget.dart';
 
 import '../../helpers.dart';
 
@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen>
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return loading? LoadingAnimation(""):Scaffold(
+    return loading? LoadingAnimation():Scaffold(
       backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,

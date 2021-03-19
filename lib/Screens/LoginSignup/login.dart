@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:willis/Screens/LoginSignup/signup.dart';
 import 'package:willis/Services/auth.dart';
-import 'package:willis/loadingWidget.dart';
+import 'file:///C:/Users/ben32/Desktop/everything/Projects/willis/lib/Screens/loadingWidget.dart';
 import '../../helpers.dart';
 
 class LoginScreen extends StatefulWidget
@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
-    return loading ? LoadingAnimation(""):Scaffold(
+    return loading ? LoadingAnimation():Scaffold(
       backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
