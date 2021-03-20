@@ -19,17 +19,22 @@ class _HomeScreenState extends State<HomeScreen>
   MediaQueryData queryData;
   int toPay = 0;
   int id = 0;
-  List<BurgerData> burgers = null;
+  List<BurgerData> burgers = [];
 
   @override
   Widget build(BuildContext context)
   {
     queryData = MediaQuery.of(context);
     List<Widget> show = [];
-    if (burgers != null)
+    for (int i = 0; i < burgers.length; i++)
+      show.add(Burger(burgers[i]));
+    if (show.isNotEmpty)
     {
-      for (int i = 0; i < burgers.length; i++)
-        show.add(Burger(burgers[i]));
+      show.add(
+        Container(
+          height: queryData.size.height*0.07,
+        )
+      );
     }
     return Scaffold(
       backgroundColor: Colors.white,
@@ -75,16 +80,12 @@ class _HomeScreenState extends State<HomeScreen>
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.remove),
                     onPressed: (){
-                      if (burgers != null)
+                      List<BurgerData> temp = [];
+                      for (int i = 0; i < burgers.length; i++)
                       {
-                        List<BurgerData> temp = [];
-                        for (int i = 0; i < burgers.length; i++)
-                        {
-                          if (!burgers[i].selected) temp.add(burgers[i]);
-                        }
-                        print(temp[0].key.toString());
-                        setState(() => burgers = temp);
+                        if (!burgers[i].info["selected"]) temp.add(burgers[i]);
                       }
+                      setState(() => burgers = temp);
                     },
                   ),
                   Container(
@@ -104,9 +105,8 @@ class _HomeScreenState extends State<HomeScreen>
                     backgroundColor: Colors.redAccent,
                     child: Icon(Icons.add),
                     onPressed: () {
-                      BurgerData bd = new BurgerData(ValueKey(id));
-                      if (burgers == null) burgers = [bd];
-                      else burgers.insert(0, bd);
+                      BurgerData bd = BurgerData(id);
+                      burgers.insert(0, bd);
                       setState(() => id++);
                     },
                   ),
