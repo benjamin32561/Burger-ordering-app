@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:willis/Models/burgerModel.dart';
 import 'package:willis/Screens/Home/burger.dart';
-import 'package:willis/Screens/loadingWidget.dart';
 import '../../helpers.dart';
 
 class HomeScreen extends StatefulWidget
